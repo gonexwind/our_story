@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="TextView">
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+    <style name="TextView.Header">
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:color">@color/primary_text_color</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+    <style name="TextView.Title">
+        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:color">@color/primary_text_color</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+    <style name="TextView.Subtitle">
+        <item name="android:color">@color/secondary_text_color</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>
