@@ -14,5 +14,6 @@
     <string name="footer_sign_up">Sudah punya akun?</string>
     <string name="greet_user">Hallo, Fikky</string>
     <string name="sub_header_list">Ini adalah cerita kita!</string>
+    <string name="fab_tool_tip">Tulis ceritamu!</string>
 
 </resources>

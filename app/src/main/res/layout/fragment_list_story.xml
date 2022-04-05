@@ -40,7 +40,8 @@
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:src="@drawable/ic_create"
-        android:tint="@color/primary_text_color"
+        app:tint="@color/primary_text_color"
+        android:tooltipText="@string/fab_tool_tip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

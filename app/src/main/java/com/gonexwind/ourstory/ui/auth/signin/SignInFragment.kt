@@ -27,5 +27,9 @@ class SignInFragment : Fragment() {
         binding.signUpButton.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
+
+        binding.signInButton.setOnClickListener {
+            findNavController().navigate(R.id.action_signInFragment_to_listStoryFragment)
+        }
     }
 }

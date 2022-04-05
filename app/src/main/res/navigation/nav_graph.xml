@@ -14,6 +14,11 @@
             app:destination="@id/signUpFragment"
             app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_signInFragment_to_listStoryFragment"
+            app:destination="@id/listStoryFragment"
+            app:popUpTo="@id/listStoryFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -26,4 +31,9 @@
             app:popUpTo="@id/signUpFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/listStoryFragment"
+        android:name="com.gonexwind.ourstory.ui.story.list.ListStoryFragment"
+        android:label="fragment_list_story"
+        tools:layout="@layout/fragment_list_story" />
 </navigation>
