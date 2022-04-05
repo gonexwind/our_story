@@ -12,4 +12,5 @@
     <string name="sign_up_sub_header">Hello friends, please sign up to join our community story.</string>
     <string name="name">Name</string>
     <string name="hint_name">Your Name</string>
+    <string name="footer_sign_in">Don\'t have an account?</string>
 </resources>
