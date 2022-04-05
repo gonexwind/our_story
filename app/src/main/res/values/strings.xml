@@ -7,4 +7,9 @@
     <string name="hint_email_address">Your Email Address</string>
     <string name="password">Password</string>
     <string name="hint_password">Your Password</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_sub_header">Hello friends, please sign up to join our community story.</string>
+    <string name="name">Name</string>
+    <string name="hint_name">Your Name</string>
 </resources>
