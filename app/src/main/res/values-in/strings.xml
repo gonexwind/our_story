@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sign_in">Masuk</string>
+    <string name="sign_in_sub_header">Hai sahabat, ayo masuk untuk menulis cerita kita.</string>
+    <string name="email_address">Alamat Email</string>
+    <string name="hint_email_address">Alamat Email Kamu</string>
+    <string name="password">Password</string>
+    <string name="hint_password">Password Kamu</string>
+</resources>
