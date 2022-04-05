@@ -37,11 +37,13 @@
         tools:listitem="@layout/item_story" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/writeButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:src="@drawable/ic_create"
         app:tint="@color/primary_text_color"
         android:tooltipText="@string/fab_tool_tip"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/fab_tool_tip" />
 </androidx.constraintlayout.widget.ConstraintLayout>

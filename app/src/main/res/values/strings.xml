@@ -19,4 +19,8 @@
     <string name="greet_user">Hello, Fikky</string>
     <string name="sub_header_list">This is our story!</string>
     <string name="fab_tool_tip">Write your story!</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="hint_description">Write your story at here....</string>
+    <string name="upload">Upload</string>
 </resources>

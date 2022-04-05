@@ -18,10 +18,46 @@
 
     <Button
         android:id="@+id/cameraButton"
+        style="@style/Button"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Camera"
+        android:text="@string/camera"
+        app:layout_constraintEnd_toStartOf="@+id/galleryButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addImageView" />
+
+    <Button
+        android:id="@+id/galleryButton"
+        style="@style/Button"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="48dp"
+        android:text="@string/gallery"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addImageView" />
+
+    <EditText
+        android:id="@+id/descriptionEditText"
+        style="@style/TextView.Subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="30dp"
+        android:autofillHints="false"
+        android:background="@color/bg_color_2"
+        android:hint="@string/hint_description"
+        android:inputType="textEmailAddress"
+        android:paddingHorizontal="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cameraButton" />
+
+    <Button
+        android:id="@+id/uploadButton"
+        style="@style/Button"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:text="@string/upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/descriptionEditText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
