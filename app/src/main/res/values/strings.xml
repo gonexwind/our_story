@@ -16,4 +16,6 @@
     <string name="footer_sign_up">Already have an account?</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="greet_user">Hello, Fikky</string>
+    <string name="sub_header_list">This is our story!</string>
 </resources>
