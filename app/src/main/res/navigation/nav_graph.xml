@@ -35,5 +35,14 @@
         android:id="@+id/listStoryFragment"
         android:name="com.gonexwind.ourstory.ui.story.list.ListStoryFragment"
         android:label="fragment_list_story"
-        tools:layout="@layout/fragment_list_story" />
+        tools:layout="@layout/fragment_list_story" >
+        <action
+            android:id="@+id/action_listStoryFragment_to_addStoryFragment"
+            app:destination="@id/addStoryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addStoryFragment"
+        android:name="com.gonexwind.ourstory.ui.story.add.AddStoryFragment"
+        android:label="fragment_add_story"
+        tools:layout="@layout/fragment_add_story" />
 </navigation>
