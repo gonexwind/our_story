@@ -10,4 +10,6 @@
     <string name="sign_up_sub_header">Hai sahabat, ayo daftar untuk bergabung dalam komunitas menulis cerita kita.</string>
     <string name="name">Nama</string>
     <string name="hint_name">Nama Kamu</string>
+    <string name="footer_sign_in">Belum punya akun?</string>
+    <string name="footer_sign_up">Sudah punya akun?</string>
 </resources>

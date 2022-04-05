@@ -92,12 +92,10 @@
         style="@style/TextView.Subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
         android:text="@string/footer_sign_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signInButton"
-        app:layout_constraintVertical_bias="0.933" />
+        app:layout_constraintBottom_toTopOf="@id/signUpButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/signUpButton"
@@ -105,10 +103,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_up"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.255"
-        app:layout_constraintStart_toEndOf="@+id/footerTextView"
-        app:layout_constraintTop_toTopOf="@+id/footerTextView" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

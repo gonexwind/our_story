@@ -13,4 +13,5 @@
     <string name="name">Name</string>
     <string name="hint_name">Your Name</string>
     <string name="footer_sign_in">Don\'t have an account?</string>
+    <string name="footer_sign_up">Already have an account?</string>
 </resources>

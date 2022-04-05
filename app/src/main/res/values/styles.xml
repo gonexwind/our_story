@@ -19,7 +19,7 @@
     </style>
     <style name="TextView.Subtitle.Color">
         <item name="android:textColor">@color/primary_color</item>
-        <item name="android:fontFamily">@font/poppins_medium</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
         <item name="android:textSize">14sp</item>
     </style>
 </resources>
