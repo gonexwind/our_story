@@ -14,7 +14,6 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        flavorDimensions "dev"
     }
     buildFeatures {
         viewBinding true
@@ -31,12 +30,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
-    }
-    productFlavors {
-        dev {
-            applicationId = "com.gonexwind.ourstory"
-            buildConfigField "String", "BASE_URL", "\"https://story-api.dicoding.dev/\"v1"
-        }
     }
 }
 

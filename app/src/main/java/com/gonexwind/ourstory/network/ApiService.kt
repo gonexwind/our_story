@@ -1,14 +1,22 @@
-package com.gonexwind.ourstory.data.remote.retrofit
+package com.gonexwind.ourstory.network
 
-import com.gonexwind.ourstory.network.User
+import com.gonexwind.ourstory.model.request.LoginRequest
+import com.gonexwind.ourstory.model.User
+import com.gonexwind.ourstory.model.request.AddStoryRequest
+import com.gonexwind.ourstory.model.request.RegisterRequest
+import com.gonexwind.ourstory.model.response.LoginResponse
+import com.gonexwind.ourstory.model.response.PostResponse
+import com.gonexwind.ourstory.utils.Constants.BASE_URL
+import com.gonexwind.ourstory.utils.Constants.LOGIN_URL
+import com.gonexwind.ourstory.utils.Constants.REGISTER_URL
+import com.gonexwind.ourstory.utils.Constants.STORY_URL
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
-private const val BASE_URL = "https://story-api.dicoding.dev/v1"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -20,21 +28,22 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 interface ApiService {
-    @POST("/login")
-    suspend fun login()
+    @POST(LOGIN_URL)
+    suspend fun login(@Body request: LoginRequest): Call<LoginResponse>
 
-    @POST("/register")
-    suspend fun register()
+    @POST(REGISTER_URL)
+    suspend fun register(@Body request: RegisterRequest): Call<PostResponse>
 
-    @GET("/stories")
-    suspend fun getStories(): List<User>
+    @GET(STORY_URL)
+    suspend fun getAllStories(): Call<List<User>>
 
-    @POST("/stories")
-    suspend fun addStory()
+    @POST(STORY_URL)
+    @FormUrlEncoded
+    suspend fun addStory(@Body request: AddStoryRequest): Call<PostResponse>
 }
 
 object StoryApi {
-    val retrofitService: ApiService by lazy {
+    val service: ApiService by lazy {
         retrofit.create(ApiService::class.java)
     }
 }
