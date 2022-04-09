@@ -38,29 +38,7 @@ class SignInFragment : Fragment() {
         }
 
         binding.signInButton.setOnClickListener {
-            signIn(binding.emailEditText.text.toString(), binding.passwordEditText.text.toString())
-//            findNavController().navigate(R.id.action_signInFragment_to_listStoryFragment)
-        }
-    }
-
-    private fun signIn(email: String, password: String) {
-        val loginRequest = LoginRequest(email, password)
-        viewLifecycleOwner.lifecycleScope.launch {
-            ApiConfig.create().login(loginRequest).enqueue(object : Callback<LoginResponse> {
-                override fun onResponse(
-                    call: Call<LoginResponse>,
-                    response: Response<LoginResponse>
-                ) {
-                    val result = response.body()!!.loginResult
-                    Log.d("BERHASIL", result.name)
-                    Log.d("BERHASIL", result.token)
-                    Log.d("BERHASIL", result.userId)
-                }
-
-                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                    Log.e("FAILED", t.message.toString())
-                }
-            })
+            findNavController().navigate(R.id.action_signInFragment_to_listStoryFragment)
         }
     }
 }
