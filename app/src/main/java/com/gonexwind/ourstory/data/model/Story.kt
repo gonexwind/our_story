@@ -1,8 +1,8 @@
-package com.gonexwind.ourstory.model
+package com.gonexwind.ourstory.data.model
 
 import com.squareup.moshi.Json
 
-data class User(
+data class Story(
     @Json val id: String,
     @Json val name: String,
     @Json val description: String,

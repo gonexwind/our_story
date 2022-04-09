@@ -6,3 +6,5 @@ object Constants {
     const val REGISTER_URL = "/register"
     const val STORY_URL = "/stories"
 }
+
+enum class AppStatus { LOADING, ERROR, DONE }

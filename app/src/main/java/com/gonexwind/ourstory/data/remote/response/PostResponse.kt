@@ -1,4 +1,4 @@
-package com.gonexwind.ourstory.model.response
+package com.gonexwind.ourstory.data.remote.response
 
 import com.squareup.moshi.Json
 
