@@ -1,6 +1,7 @@
 package com.gonexwind.ourstory.ui.auth.signin
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,11 +10,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.gonexwind.ourstory.R
-import com.gonexwind.ourstory.core.data.source.remote.network.State
-import com.gonexwind.ourstory.core.data.source.remote.request.LoginRequest
+import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
+import com.gonexwind.ourstory.core.source.remote.response.ApiResponse
 import com.gonexwind.ourstory.databinding.FragmentSignInBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
@@ -37,40 +40,54 @@ class SignInFragment : Fragment() {
 
         binding.signInButton.setOnClickListener {
             login()
-//            findNavController().navigate(R.id.action_signInFragment_to_listStoryFragment)
         }
     }
 
     private fun login() {
-        if (binding.emailEditText.text.isEmpty()) return
-        if (binding.passwordEditText.text!!.isEmpty()) return
+        val email = binding.emailEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
 
-        val body = LoginRequest(
-            binding.emailEditText.text.toString(),
-            binding.passwordEditText.text.toString(),
-        )
+        if (email.isEmpty() || password.isEmpty()) return
 
-        viewModel.login(body).observe(viewLifecycleOwner) {
-            when (it.state) {
-                State.LOADING -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                    binding.signInButton.visibility = View.GONE
+        val data = LoginRequest(email, password)
+
+        viewModel.login(data).observe(viewLifecycleOwner) {
+            when (it) {
+                is ApiResponse.Loading -> {
+                    showLoading(true)
                 }
-                State.SUCCESS -> {
+                is ApiResponse.Success -> {
+                    try {
+                        val user = it.data.loginResult
+                        Toast.makeText(
+                            requireContext(),
+                            "Selamat datang ${user.name}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    } finally {
+                        findNavController().navigate(R.id.action_signInFragment_to_listStoryFragment)
+                    }
+                }
+                is ApiResponse.Error -> {
                     Toast.makeText(
                         requireContext(),
-                        "Selamat datang ${it.data?.name}",
+                        "error bosku " + it.errorMessage,
                         Toast.LENGTH_SHORT
                     ).show()
-                }
-                State.ERROR -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "error bosku",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.e("ERROR BOSKU", it.errorMessage)
+                    showLoading(false)
                 }
             }
+        }
+    }
+
+    private fun showLoading(isLoading : Boolean) {
+        if(isLoading) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.signInButton.visibility = View.GONE
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.signInButton.visibility = View.VISIBLE
         }
     }
 

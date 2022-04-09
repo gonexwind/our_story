@@ -76,6 +76,7 @@
             style="@style/TextView.Subtitle"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
+            android:inputType="textPassword"
             android:autofillHints="false"
             android:background="@color/bg_color_2"
             android:hint="@string/password" />

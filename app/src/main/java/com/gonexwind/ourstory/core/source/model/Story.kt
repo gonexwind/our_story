@@ -1,6 +1,4 @@
-package com.gonexwind.ourstory.core.data.source.model
-
-import com.squareup.moshi.Json
+package com.gonexwind.ourstory.core.source.model
 
 data class Story(
     val id: String,

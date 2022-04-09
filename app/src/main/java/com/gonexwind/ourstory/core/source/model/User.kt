@@ -1,4 +1,4 @@
-package com.gonexwind.ourstory.core.data.source.model
+package com.gonexwind.ourstory.core.source.model
 
 data class User(
     val userId: String,
