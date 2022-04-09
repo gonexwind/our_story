@@ -1,23 +1,24 @@
 package com.gonexwind.ourstory.ui.auth.signin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.gonexwind.ourstory.R
-import com.gonexwind.ourstory.data.remote.response.LoginResponse
-import com.gonexwind.ourstory.data.remote.retrofit.ApiConfig
+import com.gonexwind.ourstory.core.data.source.remote.network.State
+import com.gonexwind.ourstory.core.data.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.databinding.FragmentSignInBinding
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.gonexwind.ourstory.ui.auth.AuthViewModel
 
 class SignInFragment : Fragment() {
     private var _binding: FragmentSignInBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: AuthViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,20 +42,36 @@ class SignInFragment : Fragment() {
     }
 
     private fun login() {
-        ApiConfig.service().login(
+        if (binding.emailEditText.text.isEmpty()) return
+        if (binding.passwordEditText.text!!.isEmpty()) return
+
+        val body = LoginRequest(
             binding.emailEditText.text.toString(),
             binding.passwordEditText.text.toString(),
-        ).enqueue(object : Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-                val result = response.body()!!.loginResult
-                Log.d("BERHASIL", result.name)
-                Log.d("BERHASIL", result.token)
-                Log.d("BERHASIL", result.userId)
-            }
+        )
 
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Log.e("ERROR", t.message.toString())
+        viewModel.login(body).observe(viewLifecycleOwner) {
+            when (it.state) {
+                State.LOADING -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                    binding.signInButton.visibility = View.GONE
+                }
+                State.SUCCESS -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "Selamat datang ${it.data?.name}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                State.ERROR -> {
+                    Toast.makeText(
+                        requireContext(),
+                        "error bosku",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-        })
+        }
     }
+
 }

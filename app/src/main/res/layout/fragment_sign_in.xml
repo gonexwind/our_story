@@ -7,6 +7,7 @@
     android:padding="30dp"
     tools:context=".ui.auth.signin.SignInFragment">
 
+
     <TextView
         android:id="@+id/headerTextView"
         style="@style/TextView.Header"
@@ -61,10 +62,11 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView"
-        app:passwordToggleEnabled="true" app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/primary_color"
         app:startIconDrawable="@drawable/ic_password"
         app:startIconTint="@color/primary_color">
@@ -74,9 +76,9 @@
             style="@style/TextView.Subtitle"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
-            android:hint="@string/password"
             android:autofillHints="false"
-            android:background="@color/bg_color_2" />
+            android:background="@color/bg_color_2"
+            android:hint="@string/password" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -87,6 +89,19 @@
         android:text="@string/sign_in"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView" />
+
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextView"
+        app:layout_constraintVertical_bias="0.287" />
 
     <TextView
         android:id="@+id/footerTextView"
