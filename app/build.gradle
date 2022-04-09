@@ -45,8 +45,8 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:2.9.0"
@@ -62,6 +62,9 @@ dependencies {
 
     // Datastore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
+
+    // Koin
+    implementation "io.insert-koin:koin-android:3.1.6"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
