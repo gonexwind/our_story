@@ -1,4 +1,4 @@
-package com.gonexwind.ourstory.network
+package com.gonexwind.ourstory.data.remote.retrofit
 
 import com.gonexwind.ourstory.data.remote.request.LoginRequest
 import com.gonexwind.ourstory.data.remote.request.RegisterRequest
@@ -18,16 +18,6 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.*
 
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
-
 interface ApiService {
     @POST(LOGIN_URL)
     suspend fun login(@Body request: LoginRequest): Call<LoginResponse>
@@ -46,10 +36,4 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): Call<PostResponse>
-}
-
-object ApiConfig {
-    val service: ApiService by lazy {
-        retrofit.create(ApiService::class.java)
-    }
 }
