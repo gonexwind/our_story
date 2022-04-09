@@ -37,15 +37,11 @@
 
     <EditText
         android:id="@+id/nameEditText"
-        style="@style/TextView.Subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        style="@style/EditText"
+        android:drawableStart="@drawable/ic_username"
         android:autofillHints="false"
-        android:background="@color/bg_color_2"
         android:hint="@string/hint_name"
         android:inputType="textPersonName"
-        android:paddingHorizontal="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameTextView" />
 
@@ -61,15 +57,11 @@
 
     <EditText
         android:id="@+id/emailEditText"
-        style="@style/TextView.Subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        style="@style/EditText"
+      android:drawableStart="@drawable/ic_email"
         android:autofillHints="false"
-        android:background="@color/bg_color_2"
         android:hint="@string/hint_email_address"
         android:inputType="textEmailAddress"
-        android:paddingHorizontal="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailTextView" />
 
@@ -85,15 +77,11 @@
 
     <EditText
         android:id="@+id/passwordEditText"
-        style="@style/TextView.Subtitle"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="12dp"
+        style="@style/EditText"
+        android:drawableStart="@drawable/ic_password"
         android:autofillHints="false"
-        android:background="@color/bg_color_2"
         android:hint="@string/hint_password"
         android:inputType="textPassword"
-        android:paddingHorizontal="15dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView" />
 
