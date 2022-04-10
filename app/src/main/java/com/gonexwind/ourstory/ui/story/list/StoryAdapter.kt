@@ -2,12 +2,12 @@ package com.gonexwind.ourstory.ui.story.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.gonexwind.ourstory.R
 import com.gonexwind.ourstory.core.source.model.Story
 import com.gonexwind.ourstory.databinding.ItemStoryBinding
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
 
 class StoryAdapter(private val stories: List<Story>) :
     RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
@@ -17,7 +17,16 @@ class StoryAdapter(private val stories: List<Story>) :
             binding.apply {
                 nameTextView.text = story.name
                 descriptionTextView.text = story.description
-                storyImageView.load(story.photoUrl)
+                storyImageView.load(story.photoUrl) {
+                    placeholder(R.drawable.loading_animation)
+                }
+                storyCard.setOnClickListener {
+                    val toDetail =
+                        ListStoryFragmentDirections.actionListStoryFragmentToDetailStoryFragment(
+                            story
+                        )
+                    it.findNavController().navigate(toDetail)
+                }
             }
         }
     }

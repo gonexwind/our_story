@@ -68,5 +68,9 @@
         android:id="@+id/detailStoryFragment"
         android:name="com.gonexwind.ourstory.ui.story.detail.DetailStoryFragment"
         android:label="fragment_detail_story"
-        tools:layout="@layout/fragment_detail_story" />
+        tools:layout="@layout/fragment_detail_story" >
+        <argument
+            android:name="story"
+            app:argType="com.gonexwind.ourstory.core.source.model.Story" />
+    </fragment>
 </navigation>
