@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/splashScreenFragment">
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.gonexwind.ourstory.ui.auth.signin.SignInFragment"
@@ -43,10 +43,27 @@
             android:id="@+id/action_listStoryFragment_to_addStoryFragment"
             app:destination="@id/addStoryFragment"
             app:enterAnim="@anim/nav_default_enter_anim" />
+        <action
+            android:id="@+id/action_listStoryFragment_to_detailStoryFragment"
+            app:destination="@id/detailStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addStoryFragment"
         android:name="com.gonexwind.ourstory.ui.story.add.AddStoryFragment"
         android:label="fragment_add_story"
         tools:layout="@layout/fragment_add_story" />
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.gonexwind.ourstory.ui.splashscreen.SplashScreenFragment"
+        android:label="fragment_splash_screen"
+        tools:layout="@layout/fragment_splash_screen" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailStoryFragment"
+        android:name="com.gonexwind.ourstory.ui.story.detail.DetailStoryFragment"
+        android:label="fragment_detail_story"
+        tools:layout="@layout/fragment_detail_story" />
 </navigation>

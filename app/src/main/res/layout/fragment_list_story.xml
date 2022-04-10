@@ -7,6 +7,16 @@
     android:padding="30dp"
     tools:context=".ui.story.list.ListStoryFragment">
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/headerTextView"
         style="@style/TextView.Header"
@@ -40,10 +50,10 @@
         android:id="@+id/writeButton"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:contentDescription="@string/fab_tool_tip"
         android:src="@drawable/ic_create"
-        app:tint="@color/primary_text_color"
         android:tooltipText="@string/fab_tool_tip"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:contentDescription="@string/fab_tool_tip" />
+        app:tint="@color/primary_text_color" />
 </androidx.constraintlayout.widget.ConstraintLayout>

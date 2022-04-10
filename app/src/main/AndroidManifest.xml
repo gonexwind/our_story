@@ -13,10 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OurStory">
         <activity
-            android:name=".ui.story.MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

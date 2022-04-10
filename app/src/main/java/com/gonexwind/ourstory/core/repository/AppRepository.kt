@@ -6,6 +6,7 @@ import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.datasource.RemoteDataSource
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
+import com.gonexwind.ourstory.core.source.remote.response.StoriesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
@@ -19,4 +20,7 @@ class AppRepository @Inject constructor(private val dataSource: RemoteDataSource
 
     suspend fun register(registerRequest: RegisterRequest): Flow<ApiState<PostResponse>> =
         dataSource.register(registerRequest).flowOn(Dispatchers.IO)
+
+    suspend fun getAllStories(token: String): Flow<ApiState<StoriesResponse>> =
+        dataSource.getAllStories(token).flowOn(Dispatchers.IO)
 }

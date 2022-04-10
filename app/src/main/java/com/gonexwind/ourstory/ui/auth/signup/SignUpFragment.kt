@@ -14,7 +14,9 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.databinding.FragmentSignUpBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!

@@ -9,16 +9,16 @@
       android:translateY="27.54">
     <path
         android:pathData="M-37.5,-37.5h450v450h-450z"
-        android:fillColor="#FFFFFF"/>
+        android:fillColor="#6C5ECF"/>
     <path
         android:pathData="M-37.5,-37.5h450v450h-450z"
-        android:fillColor="#FFFFFF"/>
+        android:fillColor="#6C5ECF"/>
     <path
         android:pathData="M-37.5,-37.5h450v450h-450z"
-        android:fillColor="#FFFFFF"/>
+        android:fillColor="#6C5ECF"/>
     <path
         android:pathData="M-37.5,-37.5h450v450h-450z"
-        android:fillColor="#FFFFFF"/>
+        android:fillColor="#6C5ECF"/>
     <group>
       <clip-path
           android:pathData="M53.82,96L182,96L182,359L53.82,359ZM53.82,96"/>

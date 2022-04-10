@@ -81,7 +81,7 @@ class SignInFragment : Fragment() {
                 is ApiState.Error -> {
                     Toast.makeText(
                         requireContext(),
-                        "Mohon Maaf Ada Kesalahan Teknis",
+                        it.message,
                         Toast.LENGTH_SHORT
                     ).show()
                     Log.e("ERROR BOSKU", it.message)

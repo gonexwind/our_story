@@ -42,17 +42,4 @@
         app:layout_constraintTop_toBottomOf="@id/nameTextView"
         tools:text="Banyak cerita belum tentu akan bersama." />
 
-    <TextView
-        android:id="@+id/dateTextView"
-        style="@style/TextView.Subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.811"
-        app:layout_constraintStart_toEndOf="@id/nameTextView"
-        app:layout_constraintTop_toTopOf="@id/nameTextView"
-        tools:text="Apr 5th, 2022" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
