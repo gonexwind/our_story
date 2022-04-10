@@ -38,8 +38,9 @@
     <EditText
         android:id="@+id/nameEditText"
         style="@style/EditText"
-        android:drawableStart="@drawable/ic_username"
+        android:layout_marginTop="12dp"
         android:autofillHints="false"
+        android:drawableStart="@drawable/ic_username"
         android:hint="@string/hint_name"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
@@ -58,8 +59,9 @@
     <EditText
         android:id="@+id/emailEditText"
         style="@style/EditText"
-      android:drawableStart="@drawable/ic_email"
+        android:layout_marginTop="12dp"
         android:autofillHints="false"
+        android:drawableStart="@drawable/ic_email"
         android:hint="@string/hint_email_address"
         android:inputType="textEmailAddress"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,10 +81,11 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="12dp"
+        app:hintAnimationEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView"
-        app:passwordToggleEnabled="true" app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
+        app:passwordToggleEnabled="true"
         app:passwordToggleTint="@color/primary_color"
         app:startIconDrawable="@drawable/ic_password"
         app:startIconTint="@color/primary_color">
@@ -92,9 +95,10 @@
             style="@style/TextView.Subtitle"
             android:layout_width="fill_parent"
             android:layout_height="55dp"
-            android:hint="@string/password"
             android:autofillHints="false"
-            android:background="@color/bg_color_2" />
+            android:background="@color/bg_color_2"
+            android:hint="@string/password"
+            android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -106,6 +110,18 @@
         android:text="@string/sign_up"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordTextView"
+        app:layout_constraintVertical_bias="0.423" />
 
     <TextView
         android:id="@+id/footerTextView"
