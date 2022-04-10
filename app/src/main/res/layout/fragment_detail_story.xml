@@ -7,24 +7,23 @@
     android:padding="30dp"
     tools:context=".ui.story.detail.DetailStoryFragment">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/backButton"-->
-<!--        android:layout_width="35dp"-->
-<!--        android:layout_height="35dp"-->
-<!--        android:src="@drawable/ic_back"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <ImageView
         android:id="@+id/storyImageView"
         android:layout_width="match_parent"
         android:layout_height="320dp"
-        android:layout_marginTop="12dp"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="45dp"
+        android:layout_height="55dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/nameTextView"

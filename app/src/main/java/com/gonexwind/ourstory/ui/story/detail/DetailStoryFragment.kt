@@ -26,8 +26,6 @@ class DetailStoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.actionBar?.setDisplayHomeAsUpEnabled(true);
-
         val story = DetailStoryFragmentArgs.fromBundle(arguments as Bundle).story
 
         binding.apply {
@@ -36,6 +34,10 @@ class DetailStoryFragment : Fragment() {
             }
             nameTextView.text = story.name
             descriptionTextView.text = story.description
+
+            backButton.setOnClickListener {
+                activity?.onBackPressed()
+            }
         }
     }
 }
