@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.gonexwind.ourstory.R
-import com.gonexwind.ourstory.databinding.ActivityAuthBinding
 import com.gonexwind.ourstory.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 

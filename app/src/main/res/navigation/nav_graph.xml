@@ -60,6 +60,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_listStoryFragment"
+            app:destination="@id/listStoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailStoryFragment"
