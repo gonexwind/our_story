@@ -8,7 +8,7 @@
     tools:context=".ui.story.add.AddStoryFragment">
 
     <ImageView
-        android:id="@+id/addImageView"
+        android:id="@+id/previewImageView"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:src="@drawable/add_photo"

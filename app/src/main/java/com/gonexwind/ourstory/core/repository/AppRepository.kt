@@ -4,6 +4,7 @@ import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.datasource.RemoteDataSource
+import com.gonexwind.ourstory.core.source.remote.request.PostStoryRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
 import com.gonexwind.ourstory.core.source.remote.response.StoriesResponse
@@ -14,13 +15,19 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class AppRepository @Inject constructor(private val dataSource: RemoteDataSource) {
+class AppRepository @Inject constructor(private val remoteDataSource: RemoteDataSource) {
     suspend fun login(loginRequest: LoginRequest): Flow<ApiState<LoginResponse>> =
-        dataSource.login(loginRequest).flowOn(Dispatchers.IO)
+        remoteDataSource.login(loginRequest).flowOn(Dispatchers.IO)
 
     suspend fun register(registerRequest: RegisterRequest): Flow<ApiState<PostResponse>> =
-        dataSource.register(registerRequest).flowOn(Dispatchers.IO)
+        remoteDataSource.register(registerRequest).flowOn(Dispatchers.IO)
 
     suspend fun getAllStories(token: String): Flow<ApiState<StoriesResponse>> =
-        dataSource.getAllStories(token).flowOn(Dispatchers.IO)
+        remoteDataSource.getAllStories(token).flowOn(Dispatchers.IO)
+
+    suspend fun postStory(
+        token: String,
+        postStoryRequest: PostStoryRequest
+    ): Flow<ApiState<PostResponse>> =
+        remoteDataSource.postStory(token, postStoryRequest).flowOn(Dispatchers.IO)
 }

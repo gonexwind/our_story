@@ -3,6 +3,7 @@ package com.gonexwind.ourstory.core.source.datasource
 import com.gonexwind.ourstory.core.source.remote.network.ApiService
 import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
+import com.gonexwind.ourstory.core.source.remote.request.PostStoryRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
@@ -45,6 +46,22 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         try {
             emit(ApiState.Loading)
             val response = apiService.getAllStories(token)
+            if (response.error) {
+                emit(ApiState.Error(response.message))
+            }
+            emit(ApiState.Success(response))
+        } catch (e: Exception) {
+            emit(ApiState.Error(e.message.toString()))
+        }
+    }
+
+    suspend fun postStory(
+        token: String,
+        postStoryRequest: PostStoryRequest
+    ): Flow<ApiState<PostResponse>> = flow {
+        try {
+            emit(ApiState.Loading)
+            val response = apiService.postStory(token, postStoryRequest)
             if (response.error) {
                 emit(ApiState.Error(response.message))
             }
