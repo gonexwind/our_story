@@ -15,7 +15,7 @@ import com.gonexwind.ourstory.databinding.FragmentSignInBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
 import com.gonexwind.ourstory.utils.Constants
 import com.gonexwind.ourstory.utils.UserPrefs
-import com.gonexwind.ourstory.utils.toast
+import com.gonexwind.ourstory.utils.Utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -13,7 +13,7 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.databinding.FragmentSignUpBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
-import com.gonexwind.ourstory.utils.toast
+import com.gonexwind.ourstory.utils.Utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
