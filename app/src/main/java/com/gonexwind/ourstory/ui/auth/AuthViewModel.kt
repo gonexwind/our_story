@@ -1,15 +1,17 @@
 package com.gonexwind.ourstory.ui.auth
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.gonexwind.ourstory.core.repository.AppRepository
-import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
+import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
 
 @HiltViewModel

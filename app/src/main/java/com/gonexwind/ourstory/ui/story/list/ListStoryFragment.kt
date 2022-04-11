@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -12,6 +13,7 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.databinding.FragmentListStoryBinding
 import com.gonexwind.ourstory.ui.story.StoryViewModel
 import com.gonexwind.ourstory.utils.UserPrefs
+import com.gonexwind.ourstory.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,12 +34,31 @@ class ListStoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.writeButton.setOnClickListener {
-            findNavController().navigate(R.id.action_listStoryFragment_to_addStoryFragment)
-        }
+        val userPrefs = UserPrefs(requireContext())
+        getAllStories("Bearer ${userPrefs.getToken}")
 
-        val token = UserPrefs(requireContext()).getToken
-        getAllStories("Bearer $token")
+        binding.apply {
+            headerTextView.text = getString(R.string.greet_user, userPrefs.username.toString())
+            writeButton.setOnClickListener {
+                findNavController().navigate(R.id.action_listStoryFragment_to_addStoryFragment)
+            }
+            signOutButton.setOnClickListener {
+                val dialogBuilder = AlertDialog.Builder(requireContext())
+                dialogBuilder.setMessage(getString(R.string.exit_message))
+                    .setCancelable(false)
+                    .setPositiveButton(getString(R.string.confirm)) { _, _ ->
+                        userPrefs.clearToken()
+                        findNavController().navigate(R.id.action_listStoryFragment_to_signInFragment)
+                        toast(requireContext(), getString(R.string.bye))
+                    }
+                    .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                        dialog.cancel()
+                    }
+                val alert = dialogBuilder.create()
+                alert.setTitle(getString(R.string.sign_out))
+                alert.show()
+            }
+        }
     }
 
     private fun getAllStories(token: String) {

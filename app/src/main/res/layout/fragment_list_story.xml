@@ -17,6 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/signOutButton"
+        android:layout_width="35dp"
+        android:tooltipText="@string/sign_out"
+        android:layout_height="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_logout"/>
+
     <TextView
         android:id="@+id/headerTextView"
         style="@style/TextView.Header"

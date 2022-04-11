@@ -12,12 +12,18 @@
     <string name="hint_name">Nama Kamu</string>
     <string name="footer_sign_in">Belum punya akun?</string>
     <string name="footer_sign_up">Sudah punya akun?</string>
-    <string name="greet_user">Hallo, Fikky</string>
+    <string name="greet_user">Hallo, %1$s!</string>
     <string name="sub_header_list">Ini adalah cerita kita!</string>
     <string name="fab_tool_tip">Tulis ceritamu!</string>
     <string name="camera">Kamera</string>
     <string name="gallery">Galeri</string>
     <string name="hint_description">Tulis ceritamu disini...</string>
     <string name="upload">Unggah</string>
-
+    <string name="sign_out">Keluar</string>
+    <string name="please_fill_out">Mohon harap diisi!</string>
+    <string name="welcome">Selamat datang, %1$s!</string>
+    <string name="bye">Sampai Jumpa Lagi!</string>
+    <string name="exit_message">Apa kamu yakin?</string>
+    <string name="confirm">Ya</string>
+    <string name="cancel">Batal</string>
 </resources>

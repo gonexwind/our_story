@@ -5,17 +5,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.gonexwind.ourstory.R
-import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
+import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.databinding.FragmentSignInBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
 import com.gonexwind.ourstory.utils.Constants
 import com.gonexwind.ourstory.utils.UserPrefs
+import com.gonexwind.ourstory.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,7 +52,15 @@ class SignInFragment : Fragment() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
-        if (email.isEmpty() || password.isEmpty()) return
+        if (email.isEmpty() || password.isEmpty()) {
+            val message = getString(R.string.please_fill_out)
+            binding.apply {
+                emailEditText.error = message
+                passwordEditText.error = message
+            }
+            toast(requireContext(), message)
+            return
+        }
 
         val loginRequest = LoginRequest(email, password)
 
@@ -65,25 +73,18 @@ class SignInFragment : Fragment() {
                     try {
                         showLoading(false)
                         val user = it.data.loginResult
-                        Toast.makeText(
-                            requireContext(),
-                            "Selamat datang ${user.name}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        toast(requireContext(), getString(R.string.welcome, user.name))
                         prefs.apply {
                             setBooleanPrefs(Constants.PREFS_IS_LOGIN, true)
                             setStringPrefs(Constants.PREFS_TOKEN, user.token)
+                            setStringPrefs(Constants.PREFS_USERNAME, user.name)
                         }
                     } finally {
                         findNavController().navigate(R.id.action_signInFragment_to_listStoryFragment)
                     }
                 }
                 is ApiState.Error -> {
-                    Toast.makeText(
-                        requireContext(),
-                        it.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    toast(requireContext(), it.message)
                     Log.e("ERROR BOSKU", it.message)
                     showLoading(false)
                 }

@@ -19,7 +19,7 @@
             android:id="@+id/action_signInFragment_to_listStoryFragment"
             app:destination="@id/listStoryFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:popUpTo="@id/listStoryFragment"
+            app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -31,7 +31,7 @@
             android:id="@+id/action_signUpFragment_to_signInFragment"
             app:destination="@id/signInFragment"
             app:enterAnim="@anim/nav_default_enter_anim"
-            app:popUpTo="@id/signInFragment"
+            app:popUpTo="@id/signUpFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -45,7 +45,13 @@
             app:enterAnim="@anim/nav_default_enter_anim" />
         <action
             android:id="@+id/action_listStoryFragment_to_detailStoryFragment"
-            app:destination="@id/detailStoryFragment" />
+            app:destination="@id/detailStoryFragment"
+            app:enterAnim="@anim/overshoot" />
+        <action
+            android:id="@+id/action_listStoryFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/listStoryFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/addStoryFragment"
@@ -55,7 +61,7 @@
         <action
             android:id="@+id/action_addStoryFragment_to_listStoryFragment"
             app:destination="@id/listStoryFragment"
-            app:popUpTo="@id/listStoryFragment"
+            app:popUpTo="@id/addStoryFragment"
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
@@ -66,12 +72,13 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_signInFragment"
             app:destination="@id/signInFragment"
-            app:popUpTo="@id/signInFragment"
+            app:popUpTo="@id/splashScreenFragment"
             app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashScreenFragment_to_listStoryFragment"
             app:destination="@id/listStoryFragment"
-            app:popUpTo="@id/listStoryFragment" />
+            app:popUpTo="@id/splashScreenFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/detailStoryFragment"

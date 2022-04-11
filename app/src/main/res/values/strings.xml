@@ -1,26 +1,30 @@
 <resources>
     <string name="app_name" translatable="false">Our Story</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="sign_in">Sign In</string>
     <string name="sign_in_sub_header">Hello friends, please sign in to write our story.</string>
     <string name="email_address">Email Address</string>
     <string name="hint_email_address">Your Email Address</string>
     <string name="password">Password</string>
     <string name="hint_password">Your Password</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="sign_up">Sign Up</string>
     <string name="sign_up_sub_header">Hello friends, please sign up to join our community story.</string>
     <string name="name">Name</string>
     <string name="hint_name">Your Name</string>
     <string name="footer_sign_in">Don\'t have an account?</string>
     <string name="footer_sign_up">Already have an account?</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="greet_user">Hello, Fikky</string>
+    <string name="greet_user">Hello, %1$s!</string>
     <string name="sub_header_list">This is our story!</string>
     <string name="fab_tool_tip">Write your story!</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="hint_description">Write your story at here....</string>
     <string name="upload">Upload</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="please_fill_out">Please Fill Out!</string>
+    <string name="welcome">Welcome, %1$s!</string>
+    <string name="bye">See ya!</string>
+    <string name="exit_message">Are you sure?</string>
+    <string name="confirm">Yes</string>
+    <string name="cancel">Cancel</string>
 </resources>

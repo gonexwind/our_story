@@ -2,11 +2,10 @@ package com.gonexwind.ourstory.ui.auth.signup
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.gonexwind.ourstory.R
@@ -14,6 +13,7 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.databinding.FragmentSignUpBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
+import com.gonexwind.ourstory.utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,7 +48,17 @@ class SignUpFragment : Fragment() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
-        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) return
+        if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            val message = getString(R.string.please_fill_out)
+            binding.apply {
+                nameEditText.error = message
+                emailEditText.error = message
+                passwordEditText.error = message
+            }
+            toast(requireContext(), message)
+            return
+        }
+
 
         val registerRequest = RegisterRequest(name, email, password)
 
@@ -60,22 +70,13 @@ class SignUpFragment : Fragment() {
                 is ApiState.Success -> {
                     try {
                         showLoading(false)
-                        Toast.makeText(
-                            requireContext(),
-                            it.data.message,
-                            Toast.LENGTH_SHORT
-                        ).show()
-
+                        toast(requireContext(), it.data.message)
                     } finally {
                         findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
                     }
                 }
                 is ApiState.Error -> {
-                    Toast.makeText(
-                        requireContext(),
-                        it.message,
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    toast(requireContext(), it.message)
                     Log.e("ERROR BOSKU", it.message)
                     showLoading(false)
                 }

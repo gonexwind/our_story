@@ -12,7 +12,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
@@ -22,10 +21,8 @@ import com.gonexwind.ourstory.R
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.databinding.FragmentAddStoryBinding
 import com.gonexwind.ourstory.ui.story.StoryViewModel
-import com.gonexwind.ourstory.utils.UserPrefs
-import com.gonexwind.ourstory.utils.createTempFile
-import com.gonexwind.ourstory.utils.reduceFileImage
-import com.gonexwind.ourstory.utils.uriToFile
+import com.gonexwind.ourstory.utils.*
+import com.gonexwind.ourstory.utils.Constants.AUTHORITY_CAMERA
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -68,20 +65,15 @@ class AddStoryFragment : Fragment() {
 
     private fun postStory(token: String) {
         if (binding.descriptionEditText.text.isEmpty()) {
-            binding.descriptionEditText.error = "Mohon harap diisi"
-            Toast.makeText(
-                requireContext(),
-                "Mohon deskripsi harap diisi",
-                Toast.LENGTH_SHORT
-            ).show()
+            val message = getString(R.string.please_fill_out)
+            binding.descriptionEditText.error = message
+            toast(requireContext(), message)
             return
         }
 
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
             val description = binding.descriptionEditText.text.toString()
-
-
             val descriptionPart = description.toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
             val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
@@ -99,22 +91,13 @@ class AddStoryFragment : Fragment() {
                         is ApiState.Success -> {
                             try {
                                 showLoading(false)
-                                val success = it.data.message
-                                Toast.makeText(
-                                    requireContext(),
-                                    "Selamat datang $success",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                toast(requireContext(), it.data.message)
                             } finally {
                                 findNavController().navigate(R.id.action_addStoryFragment_to_listStoryFragment)
                             }
                         }
                         is ApiState.Error -> {
-                            Toast.makeText(
-                                requireContext(),
-                                it.message,
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            toast(requireContext(), it.message)
                             Log.e("ERROR BOSKU", it.message)
                             showLoading(false)
                         }
@@ -150,7 +133,7 @@ class AddStoryFragment : Fragment() {
         createTempFile(requireActivity().application).also {
             val photoURI: Uri = FileProvider.getUriForFile(
                 requireContext(),
-                "com.gonexwind.ourstory.ui.story.add",
+                AUTHORITY_CAMERA,
                 it
             )
             currentPhotoPath = it.absolutePath
