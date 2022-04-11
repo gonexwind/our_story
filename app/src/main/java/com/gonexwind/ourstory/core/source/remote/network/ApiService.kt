@@ -1,7 +1,6 @@
 package com.gonexwind.ourstory.core.source.remote.network
 
 import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
-import com.gonexwind.ourstory.core.source.remote.request.PostStoryRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
@@ -30,6 +29,7 @@ interface ApiService {
     @POST("stories")
     suspend fun postStory(
         @Header("Authorization") token: String,
-        @Body postStoryRequest: PostStoryRequest,
+        @Part file: MultipartBody.Part,
+        @Part("description") description: RequestBody,
     ): PostResponse
 }

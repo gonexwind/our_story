@@ -7,7 +7,6 @@
     android:padding="30dp"
     tools:context=".ui.auth.signin.SignInFragment">
 
-
     <TextView
         android:id="@+id/headerTextView"
         style="@style/TextView.Header"

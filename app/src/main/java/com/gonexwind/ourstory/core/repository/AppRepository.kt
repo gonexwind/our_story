@@ -4,13 +4,14 @@ import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.datasource.RemoteDataSource
-import com.gonexwind.ourstory.core.source.remote.request.PostStoryRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
 import com.gonexwind.ourstory.core.source.remote.response.StoriesResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -27,7 +28,8 @@ class AppRepository @Inject constructor(private val remoteDataSource: RemoteData
 
     suspend fun postStory(
         token: String,
-        postStoryRequest: PostStoryRequest
+        file: MultipartBody.Part,
+        description: RequestBody,
     ): Flow<ApiState<PostResponse>> =
-        remoteDataSource.postStory(token, postStoryRequest).flowOn(Dispatchers.IO)
+        remoteDataSource.postStory(token, file, description).flowOn(Dispatchers.IO)
 }
