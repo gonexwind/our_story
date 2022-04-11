@@ -1,16 +1,20 @@
 package com.gonexwind.ourstory.ui.story.add
 
+import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -19,6 +23,7 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.databinding.FragmentAddStoryBinding
 import com.gonexwind.ourstory.ui.story.StoryViewModel
 import com.gonexwind.ourstory.utils.UserPrefs
+import com.gonexwind.ourstory.utils.createTempFile
 import com.gonexwind.ourstory.utils.reduceFileImage
 import com.gonexwind.ourstory.utils.uriToFile
 import dagger.hilt.android.AndroidEntryPoint
@@ -51,9 +56,7 @@ class AddStoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val token = UserPrefs(requireContext()).getToken
 
-        binding.cameraButton.setOnClickListener {
-
-        }
+        binding.cameraButton.setOnClickListener { startCamera() }
         binding.galleryButton.setOnClickListener { startGallery() }
         binding.uploadButton.setOnClickListener { postStory("Bearer $token") }
     }
@@ -125,8 +128,33 @@ class AddStoryFragment : Fragment() {
         }
     }
 
+    @SuppressLint("QueryPermissionsNeeded")
     private fun startCamera() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        intent.resolveActivity(requireActivity().packageManager)
 
+        createTempFile(requireActivity().application).also {
+            val photoURI: Uri = FileProvider.getUriForFile(
+                requireContext(),
+                "com.gonexwind.ourstory.ui.story.add",
+                it
+            )
+            currentPhotoPath = it.absolutePath
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+            launcherIntentCamera.launch(intent)
+        }
+    }
+
+    private val launcherIntentCamera = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == RESULT_OK) {
+            val myFile = File(currentPhotoPath)
+            getFile = myFile
+
+            val result = BitmapFactory.decodeFile(getFile?.path)
+            binding.previewImageView.setImageBitmap(result)
+        }
     }
 
     private fun showLoading(isLoading: Boolean) {
