@@ -77,30 +77,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
+    <com.gonexwind.ourstory.ui.auth.customview.CustomEditText
+        android:id="@+id/passwordEditText"
+        style="@style/EditText"
         android:layout_marginTop="12dp"
-        app:hintAnimationEnabled="false"
-        app:hintEnabled="false"
+        android:hint="@string/password"
+        android:drawableStart="@drawable/ic_password"
+        android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordTextView"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/primary_color"
-        app:startIconDrawable="@drawable/ic_password"
-        app:startIconTint="@color/primary_color">
-
-        <com.gonexwind.ourstory.ui.auth.customview.PasswordEditText
-            android:id="@+id/passwordEditText"
-            style="@style/TextView.Subtitle"
-            android:layout_width="fill_parent"
-            android:layout_height="55dp"
-            android:autofillHints="false"
-            android:background="@color/bg_color_2"
-            android:hint="@string/password"
-            android:inputType="textPassword" />
-    </com.google.android.material.textfield.TextInputLayout>
-
+        app:layout_constraintTop_toBottomOf="@id/passwordTextView" />
 
     <Button
         android:id="@+id/signUpButton"
