@@ -56,9 +56,14 @@ class AddStoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val token = UserPrefs(requireContext()).getToken
 
-        binding.cameraButton.setOnClickListener { startCamera() }
-        binding.galleryButton.setOnClickListener { startGallery() }
-        binding.uploadButton.setOnClickListener { postStory("Bearer $token") }
+        binding.apply {
+            backButton.setOnClickListener {
+                activity?.onBackPressed()
+            }
+            cameraButton.setOnClickListener { startCamera() }
+            galleryButton.setOnClickListener { startGallery() }
+            uploadButton.setOnClickListener { postStory("Bearer $token") }
+        }
     }
 
     private fun postStory(token: String) {
