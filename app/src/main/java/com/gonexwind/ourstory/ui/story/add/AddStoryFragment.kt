@@ -67,11 +67,20 @@ class AddStoryFragment : Fragment() {
     }
 
     private fun postStory(token: String) {
+        if (binding.descriptionEditText.text.isEmpty()) {
+            binding.descriptionEditText.error = "Mohon harap diisi"
+            Toast.makeText(
+                requireContext(),
+                "Mohon deskripsi harap diisi",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
         if (getFile != null) {
             val file = reduceFileImage(getFile as File)
             val description = binding.descriptionEditText.text.toString()
 
-            if (description.isEmpty()) return
 
             val descriptionPart = description.toRequestBody("text/plain".toMediaType())
             val requestImageFile = file.asRequestBody("image/jpeg".toMediaTypeOrNull())
