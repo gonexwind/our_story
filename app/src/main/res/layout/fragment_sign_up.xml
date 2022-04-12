@@ -114,12 +114,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/footer_sign_up"
-        app:layout_constraintBottom_toTopOf="@id/signInButton"
+        app:layout_constraintBottom_toTopOf="@id/signInTextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/signInButton"
+        android:id="@+id/signInTextButton"
         style="@style/TextView.Subtitle.Color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

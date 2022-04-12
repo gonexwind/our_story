@@ -13,6 +13,7 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.databinding.FragmentSignUpBinding
 import com.gonexwind.ourstory.ui.auth.AuthViewModel
+import com.gonexwind.ourstory.utils.Constants
 import com.gonexwind.ourstory.utils.Utils.toast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -34,7 +35,7 @@ class SignUpFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.signInButton.setOnClickListener {
+        binding.signInTextButton.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
 
@@ -47,6 +48,7 @@ class SignUpFragment : Fragment() {
         val name = binding.nameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
+        val registerRequest = RegisterRequest(name, email, password)
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             val message = getString(R.string.please_fill_out)
@@ -58,9 +60,7 @@ class SignUpFragment : Fragment() {
             toast(requireContext(), message)
             return
         }
-
-
-        val registerRequest = RegisterRequest(name, email, password)
+        if (password.length < 6) return
 
         viewModel.register(registerRequest).observe(viewLifecycleOwner) {
             when (it) {
@@ -77,7 +77,7 @@ class SignUpFragment : Fragment() {
                 }
                 is ApiState.Error -> {
                     toast(requireContext(), it.message)
-                    Log.e("ERROR BOSKU", it.message)
+                    Log.e(Constants.TAG_ERROR, it.message)
                     showLoading(false)
                 }
             }

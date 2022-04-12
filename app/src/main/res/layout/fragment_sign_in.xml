@@ -60,8 +60,8 @@
         android:id="@+id/passwordEditText"
         style="@style/EditText"
         android:layout_marginTop="12dp"
-        android:hint="@string/password"
         android:drawableStart="@drawable/ic_password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordTextView" />
@@ -93,12 +93,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/footer_sign_in"
-        app:layout_constraintBottom_toTopOf="@id/signUpButton"
+        app:layout_constraintBottom_toTopOf="@id/signUpTextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/signUpButton"
+        android:id="@+id/signUpTextButton"
         style="@style/TextView.Subtitle.Color"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

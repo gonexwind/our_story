@@ -21,6 +21,7 @@ import com.gonexwind.ourstory.R
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.databinding.FragmentAddStoryBinding
 import com.gonexwind.ourstory.ui.story.StoryViewModel
+import com.gonexwind.ourstory.utils.Constants
 import com.gonexwind.ourstory.utils.Constants.AUTHORITY_CAMERA
 import com.gonexwind.ourstory.utils.UserPrefs
 import com.gonexwind.ourstory.utils.Utils.createTempFile
@@ -102,7 +103,7 @@ class AddStoryFragment : Fragment() {
                         }
                         is ApiState.Error -> {
                             toast(requireContext(), it.message)
-                            Log.e("ERROR BOSKU", it.message)
+                            Log.e(Constants.TAG_ERROR, it.message)
                             showLoading(false)
                         }
                     }

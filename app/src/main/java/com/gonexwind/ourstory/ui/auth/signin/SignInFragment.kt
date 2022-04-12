@@ -39,7 +39,7 @@ class SignInFragment : Fragment() {
 
         prefs = UserPrefs(requireContext())
 
-        binding.signUpButton.setOnClickListener {
+        binding.signUpTextButton.setOnClickListener {
             findNavController().navigate(R.id.action_signInFragment_to_signUpFragment)
         }
 
@@ -51,18 +51,16 @@ class SignInFragment : Fragment() {
     private fun login() {
         val email = binding.emailEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
+        val loginRequest = LoginRequest(email, password)
 
         if (email.isEmpty() || password.isEmpty()) {
             val message = getString(R.string.please_fill_out)
-            binding.apply {
-                emailEditText.error = message
-                passwordEditText.error = message
-            }
+            binding.emailEditText.error = message
+            binding.passwordEditText.error = message
             toast(requireContext(), message)
             return
         }
-
-        val loginRequest = LoginRequest(email, password)
+        if (password.length < 6) return
 
         viewModel.login(loginRequest).observe(viewLifecycleOwner) {
             when (it) {
@@ -85,7 +83,7 @@ class SignInFragment : Fragment() {
                 }
                 is ApiState.Error -> {
                     toast(requireContext(), it.message)
-                    Log.e("ERROR BOSKU", it.message)
+                    Log.e(Constants.TAG_ERROR, it.message)
                     showLoading(false)
                 }
             }

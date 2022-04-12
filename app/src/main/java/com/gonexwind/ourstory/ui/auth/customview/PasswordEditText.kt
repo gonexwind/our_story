@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
+import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatEditText
@@ -52,7 +53,7 @@ class CustomEditText : AppCompatEditText {
 
     private fun showErrorButton() {
         setButtonDrawables(endOfTheText = errorButtonImage)
-        passwordEditText.error = "Password tidak boleh kurang dari 6 karakter"
+        passwordEditText.error = resources.getString(R.string.password_error)
     }
 
     private fun hideErrorButton() {
