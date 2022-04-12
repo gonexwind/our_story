@@ -5,15 +5,15 @@ import android.graphics.drawable.Drawable
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.view.MotionEvent
-import android.view.View
+import android.widget.EditText
 import androidx.appcompat.content.res.AppCompatResources.getDrawable
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import com.gonexwind.ourstory.R
 
-class CustomEditText : AppCompatEditText, View.OnTouchListener {
-    private lateinit var clearButtonImage: Drawable
+class CustomEditText : AppCompatEditText {
+    private lateinit var errorButtonImage: Drawable
+    private lateinit var passwordEditText: EditText
 
     constructor(context: Context) : super(context) {
         init()
@@ -32,9 +32,8 @@ class CustomEditText : AppCompatEditText, View.OnTouchListener {
     }
 
     private fun init() {
-        clearButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_cancel) as Drawable
-
-        setOnTouchListener(this)
+        errorButtonImage = ContextCompat.getDrawable(context, R.drawable.ic_error) as Drawable
+        passwordEditText = findViewById(R.id.passwordEditText)
 
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -42,7 +41,7 @@ class CustomEditText : AppCompatEditText, View.OnTouchListener {
             }
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (s.toString().isNotEmpty()) showClearButton() else hideClearButton()
+                if (s.length < 6) showErrorButton() else hideErrorButton()
             }
 
             override fun afterTextChanged(s: Editable) {
@@ -51,11 +50,12 @@ class CustomEditText : AppCompatEditText, View.OnTouchListener {
         })
     }
 
-    private fun showClearButton() {
-        setButtonDrawables(endOfTheText = clearButtonImage)
+    private fun showErrorButton() {
+        setButtonDrawables(endOfTheText = errorButtonImage)
+        passwordEditText.error = "Password tidak boleh kurang dari 6 karakter"
     }
 
-    private fun hideClearButton() {
+    private fun hideErrorButton() {
         setButtonDrawables()
     }
 
@@ -71,46 +71,5 @@ class CustomEditText : AppCompatEditText, View.OnTouchListener {
             endOfTheText,
             bottomOfTheText
         )
-    }
-
-    override fun onTouch(v: View?, event: MotionEvent): Boolean {
-        if (compoundDrawables[2] != null) {
-            val clearButtonStart: Float
-            val clearButtonEnd: Float
-            var isClearButtonClicked = false
-
-            if (layoutDirection == View.LAYOUT_DIRECTION_RTL) {
-                clearButtonEnd = (clearButtonImage.intrinsicWidth + paddingStart).toFloat()
-                when {
-                    event.x < clearButtonEnd -> isClearButtonClicked = true
-                }
-            } else {
-                clearButtonStart = (width - paddingEnd - clearButtonImage.intrinsicWidth).toFloat()
-                when {
-                    event.x > clearButtonStart -> isClearButtonClicked = true
-                }
-            }
-            if (isClearButtonClicked) {
-                when (event.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        clearButtonImage =
-                            ContextCompat.getDrawable(context, R.drawable.ic_cancel) as Drawable
-                        showClearButton()
-                        return true
-                    }
-                    MotionEvent.ACTION_UP -> {
-                        clearButtonImage =
-                            ContextCompat.getDrawable(context, R.drawable.ic_cancel) as Drawable
-                        when {
-                            text != null -> text?.clear()
-                        }
-                        hideClearButton()
-                        return true
-                    }
-                    else -> return false
-                }
-            } else return false
-        }
-        return false
     }
 }
