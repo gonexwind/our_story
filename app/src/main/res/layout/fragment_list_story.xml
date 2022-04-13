@@ -21,6 +21,7 @@
         android:id="@+id/signOutButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
+        android:contentDescription="@string/image_description"
         android:src="@drawable/ic_logout"
         android:tooltipText="@string/sign_out"
         app:layout_constraintEnd_toEndOf="parent"

@@ -11,6 +11,7 @@
         android:id="@+id/storyImageView"
         android:layout_width="match_parent"
         android:layout_height="320dp"
+        android:contentDescription="@string/image_description"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +22,7 @@
         android:id="@+id/backButton"
         android:layout_width="45dp"
         android:layout_height="55dp"
+        android:contentDescription="@string/image_description"
         android:src="@drawable/ic_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

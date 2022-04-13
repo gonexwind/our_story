@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">Our Story</string>
     <string name="sign_in">Sign In</string>
+    <string name="image_description" translatable="false">Images</string>
     <string name="sign_in_sub_header">Hello friends, please sign in to write our story.</string>
     <string name="email_address">Email Address</string>
     <string name="hint_email_address">Your Email Address</string>
