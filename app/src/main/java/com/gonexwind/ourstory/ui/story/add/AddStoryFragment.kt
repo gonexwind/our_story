@@ -68,6 +68,11 @@ class AddStoryFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun postStory(token: String) {
         if (binding.descriptionEditText.text.isEmpty()) {
             val message = getString(R.string.please_fill_out)

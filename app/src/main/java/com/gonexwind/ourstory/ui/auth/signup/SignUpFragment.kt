@@ -44,6 +44,11 @@ class SignUpFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun register() {
         val name = binding.nameEditText.text.toString()
         val email = binding.emailEditText.text.toString()

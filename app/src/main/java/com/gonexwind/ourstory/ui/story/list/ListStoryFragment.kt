@@ -61,6 +61,11 @@ class ListStoryFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun getAllStories(token: String) {
         viewModel.getAllStories(token).observe(viewLifecycleOwner) {
             when (it) {
