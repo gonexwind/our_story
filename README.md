@@ -4,6 +4,13 @@
 
 **Our Story** is an app to share your stories
 
+# Application Install
+
+***You can Install and test latest Our Story app from below 👇***
+
+[![OurStory](https://img.shields.io/badge/OurStory✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/gonexwind/our_story/releases/download/v1.0.0/ourstory-release-1.0.apk)
+
+
 ## Setup
 Clone the repository on your machine. Open the project on your IDE and connect it to firebase and harperDB and everything will be setup
 
