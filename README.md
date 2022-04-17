@@ -15,7 +15,7 @@ It uses retrofit.
 
 ## MAD Score
 
-![](media/summary.png)
+![](media/mad_scorecard/summary.png)
 
 Full details of MAD Score:- [MAD Score](https://madscorecard.withgoogle.com/scorecards/2544709019/)
 
