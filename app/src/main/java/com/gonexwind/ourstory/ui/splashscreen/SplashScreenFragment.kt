@@ -6,6 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.gonexwind.ourstory.R
@@ -25,8 +26,11 @@ class SplashScreenFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        (activity as AppCompatActivity).supportActionBar?.hide()
         prefs = UserPrefs(requireContext())
         val isLogin = prefs.isLogin
+
         Handler(Looper.getMainLooper()).postDelayed({
             when {
                 isLogin -> findNavController().navigate(R.id.action_splashScreenFragment_to_listStoryFragment)

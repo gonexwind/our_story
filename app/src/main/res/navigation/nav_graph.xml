@@ -52,6 +52,10 @@
             app:destination="@id/signInFragment"
             app:popUpTo="@id/listStoryFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_listStoryFragment_to_mapsFragment"
+            app:destination="@id/mapsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim" />
     </fragment>
     <fragment
         android:id="@+id/addStoryFragment"
@@ -89,4 +93,9 @@
             android:name="story"
             app:argType="com.gonexwind.ourstory.core.source.model.Story" />
     </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.gonexwind.ourstory.ui.map.MapsFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
 </navigation>

@@ -5,6 +5,7 @@ plugins {
     id 'kotlin-parcelize'
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -17,6 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField("String", "BASE_URL", '"https://story-api.dicoding.dev/v1/"')
+        buildConfigField("String", "MAP_API_KEY", '"AIzaSyDaRGDAH2nF1qrpjAkxklF7TftOtwpgrIA"')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -67,6 +69,7 @@ dependencies {
     //  Hilt
     implementation "com.google.dagger:hilt-android:2.38.1"
     implementation 'androidx.camera:camera-core:1.0.2'
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
     kapt 'com.google.dagger:hilt-compiler:2.38.1'
 
     testImplementation 'junit:junit:4.13.2'

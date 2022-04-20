@@ -1,10 +1,9 @@
 package com.gonexwind.ourstory.ui.story.list
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -20,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class ListStoryFragment : Fragment() {
     private var _binding: FragmentListStoryBinding? = null
     private val binding get() = _binding!!
-
+    private lateinit var userPrefs: UserPrefs
     private val viewModel: StoryViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -34,36 +33,36 @@ class ListStoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val userPrefs = UserPrefs(requireContext())
+        userPrefs = UserPrefs(requireContext())
+        (activity as AppCompatActivity).supportActionBar?.apply {
+            show()
+            title = getString(R.string.greet_user, userPrefs.username.toString())
+        }
+
+        setHasOptionsMenu(true)
         getAllStories("Bearer ${userPrefs.getToken}")
 
-        binding.apply {
-            headerTextView.text = getString(R.string.greet_user, userPrefs.username.toString())
-            writeButton.setOnClickListener {
-                findNavController().navigate(R.id.action_listStoryFragment_to_addStoryFragment)
-            }
-            signOutButton.setOnClickListener {
-                val dialogBuilder = AlertDialog.Builder(requireContext())
-                dialogBuilder.setMessage(getString(R.string.exit_message))
-                    .setCancelable(false)
-                    .setPositiveButton(getString(R.string.confirm)) { _, _ ->
-                        userPrefs.clearToken()
-                        findNavController().navigate(R.id.action_listStoryFragment_to_signInFragment)
-                        toast(requireContext(), getString(R.string.bye))
-                    }
-                    .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
-                        dialog.cancel()
-                    }
-                val alert = dialogBuilder.create()
-                alert.setTitle(getString(R.string.sign_out))
-                alert.show()
-            }
+        binding.writeButton.setOnClickListener {
+            findNavController().navigate(R.id.action_listStoryFragment_to_addStoryFragment)
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu, menu)
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.mapStory -> findNavController().navigate(R.id.action_listStoryFragment_to_mapsFragment)
+            R.id.signOut -> signOut()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun getAllStories(token: String) {
@@ -82,6 +81,23 @@ class ListStoryFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun signOut() {
+        val dialogBuilder = AlertDialog.Builder(requireContext())
+        dialogBuilder.setMessage(getString(R.string.exit_message))
+            .setCancelable(false)
+            .setPositiveButton(getString(R.string.confirm)) { _, _ ->
+                userPrefs.clearToken()
+                findNavController().navigate(R.id.action_listStoryFragment_to_signInFragment)
+                toast(requireContext(), getString(R.string.bye))
+            }
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
+                dialog.cancel()
+            }
+        val alert = dialogBuilder.create()
+        alert.setTitle(getString(R.string.sign_out))
+        alert.show()
     }
 
     private fun showLoading(isLoading: Boolean) {

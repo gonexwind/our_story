@@ -29,4 +29,6 @@
     <string name="confirm">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="password_error">Password can\'t less than 6 characters</string>
+    <string name="menu" translatable="false">Menu</string>
+    <string name="map_story" translatable="false">Map Story</string>
 </resources>

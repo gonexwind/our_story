@@ -18,12 +18,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/signOutButton"
+        android:id="@+id/optionButton"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:contentDescription="@string/image_description"
-        android:src="@drawable/ic_logout"
-        android:tooltipText="@string/sign_out"
+        android:src="@drawable/ic_more_vert"
+        android:tooltipText="@string/menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
