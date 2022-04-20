@@ -4,10 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.gonexwind.ourstory.core.repository.AppRepository
+import com.gonexwind.ourstory.core.source.model.Story
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
 import com.gonexwind.ourstory.core.source.remote.response.StoriesResponse
+import com.gonexwind.ourstory.utils.UserPrefs
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import okhttp3.MultipartBody
@@ -17,16 +21,8 @@ import javax.inject.Inject
 @HiltViewModel
 class StoryViewModel @Inject constructor(private val appRepository: AppRepository) :
     ViewModel() {
-
-    fun getAllStories(token: String, page: Int?, size: Int?): LiveData<ApiState<StoriesResponse>> {
-        val result = MutableLiveData<ApiState<StoriesResponse>>()
-        viewModelScope.launch {
-            appRepository.getAllStories(token, page, size).collect {
-                result.postValue(it)
-            }
-        }
-        return result
-    }
+    fun getStoriesWithPage(token: String): LiveData<PagingData<Story>> =
+        appRepository.getStoriesWithPage(token).cachedIn(viewModelScope)
 
     fun postStory(
         token: String,

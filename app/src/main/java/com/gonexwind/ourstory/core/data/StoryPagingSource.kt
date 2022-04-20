@@ -7,6 +7,7 @@ import com.gonexwind.ourstory.core.source.remote.network.ApiService
 
 class StoryPagingSource(private val apiService: ApiService, val token: String) :
     PagingSource<Int, Story>() {
+
     private companion object {
         const val INITIAL_PAGE_INDEX = 1
     }
@@ -19,16 +20,15 @@ class StoryPagingSource(private val apiService: ApiService, val token: String) :
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Story> {
         return try {
             val position = params.key ?: INITIAL_PAGE_INDEX
-
             val responseData = apiService.getAllStories(token, position, params.loadSize)
+
             LoadResult.Page(
                 data = responseData.listStory,
                 prevKey = if (position == INITIAL_PAGE_INDEX) null else position - 1,
-                nextKey = if (position == INITIAL_PAGE_INDEX) null else position + 1,
+                nextKey = if (responseData.listStory.isNullOrEmpty()) null else position + 1,
             )
         } catch (e: Exception) {
             return LoadResult.Error(e)
         }
-
     }
 }

@@ -67,21 +67,10 @@ class ListStoryFragment : Fragment() {
     }
 
     private fun getAllStories(token: String) {
-        viewModel.getAllStories(token, 1, 20).observe(viewLifecycleOwner) {
-            when (it) {
-                is ApiState.Loading -> {
-                    showLoading(true)
-                }
-                is ApiState.Success -> {
-                    showLoading(false)
-                    val adapter = StoryAdapter()
-                    binding.storyRecyclerView.adapter = adapter
-                    adapter.submitData(lifecycle, PagingData.from(it.data.listStory))
-                }
-                is ApiState.Error -> {
-                    showLoading(false)
-                }
-            }
+        val adapter = StoryAdapter()
+        binding.storyRecyclerView.adapter = adapter
+        viewModel.getStoriesWithPage(token).observe(viewLifecycleOwner) { data ->
+            adapter.submitData(lifecycle, data)
         }
     }
 
