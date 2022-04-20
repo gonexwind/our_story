@@ -26,6 +26,10 @@ class AppRepository @Inject constructor(private val remoteDataSource: RemoteData
     suspend fun getAllStories(token: String): Flow<ApiState<StoriesResponse>> =
         remoteDataSource.getAllStories(token).flowOn(Dispatchers.IO)
 
+    suspend fun getMapStories(token: String): Flow<ApiState<StoriesResponse>> =
+        remoteDataSource.getMapStories(token).flowOn(Dispatchers.IO)
+
+
     suspend fun postStory(
         token: String,
         file: MultipartBody.Part,

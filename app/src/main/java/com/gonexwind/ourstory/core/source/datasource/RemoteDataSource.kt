@@ -56,6 +56,19 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         }
     }
 
+    suspend fun getMapStories(token: String): Flow<ApiState<StoriesResponse>> = flow {
+        try {
+            emit(ApiState.Loading)
+            val response = apiService.getMapStories(token)
+            if (response.error) {
+                emit(ApiState.Error(response.message))
+            }
+            emit(ApiState.Success(response))
+        } catch (e: Exception) {
+            emit(ApiState.Error(e.message.toString()))
+        }
+    }
+
     suspend fun postStory(
         token: String,
         file: MultipartBody.Part,

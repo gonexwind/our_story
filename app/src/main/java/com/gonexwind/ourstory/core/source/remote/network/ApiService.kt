@@ -20,8 +20,13 @@ interface ApiService {
         @Body registerRequest: RegisterRequest
     ): PostResponse
 
-    @GET("stories?location=1")
+    @GET("stories")
     suspend fun getAllStories(
+        @Header("Authorization") token: String
+    ): StoriesResponse
+
+    @GET("stories?location=1")
+    suspend fun getMapStories(
         @Header("Authorization") token: String
     ): StoriesResponse
 
