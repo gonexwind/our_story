@@ -15,11 +15,13 @@ import okhttp3.RequestBody
 import javax.inject.Inject
 
 @HiltViewModel
-class StoryViewModel @Inject constructor(private val appRepository: AppRepository) : ViewModel() {
-    fun getAllStories(token: String): LiveData<ApiState<StoriesResponse>> {
+class StoryViewModel @Inject constructor(private val appRepository: AppRepository) :
+    ViewModel() {
+
+    fun getAllStories(token: String, page: Int?, size: Int?): LiveData<ApiState<StoriesResponse>> {
         val result = MutableLiveData<ApiState<StoriesResponse>>()
         viewModelScope.launch {
-            appRepository.getAllStories(token).collect {
+            appRepository.getAllStories(token, page, size).collect {
                 result.postValue(it)
             }
         }

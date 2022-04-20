@@ -1,10 +1,10 @@
 package com.gonexwind.ourstory.core.repository
 
-import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
-import com.gonexwind.ourstory.core.source.remote.network.ApiState
-import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.datasource.RemoteDataSource
+import com.gonexwind.ourstory.core.source.remote.network.ApiState
+import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
+import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
 import com.gonexwind.ourstory.core.source.remote.response.StoriesResponse
 import kotlinx.coroutines.Dispatchers
@@ -23,8 +23,12 @@ class AppRepository @Inject constructor(private val remoteDataSource: RemoteData
     suspend fun register(registerRequest: RegisterRequest): Flow<ApiState<PostResponse>> =
         remoteDataSource.register(registerRequest).flowOn(Dispatchers.IO)
 
-    suspend fun getAllStories(token: String): Flow<ApiState<StoriesResponse>> =
-        remoteDataSource.getAllStories(token).flowOn(Dispatchers.IO)
+    suspend fun getAllStories(
+        token: String,
+        page: Int?,
+        size: Int?
+    ): Flow<ApiState<StoriesResponse>> =
+        remoteDataSource.getAllStories(token, page, size).flowOn(Dispatchers.IO)
 
     suspend fun getMapStories(token: String): Flow<ApiState<StoriesResponse>> =
         remoteDataSource.getMapStories(token).flowOn(Dispatchers.IO)

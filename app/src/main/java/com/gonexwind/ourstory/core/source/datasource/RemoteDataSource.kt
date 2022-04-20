@@ -1,8 +1,8 @@
 package com.gonexwind.ourstory.core.source.datasource
 
 import com.gonexwind.ourstory.core.source.remote.network.ApiService
-import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
+import com.gonexwind.ourstory.core.source.remote.request.LoginRequest
 import com.gonexwind.ourstory.core.source.remote.request.RegisterRequest
 import com.gonexwind.ourstory.core.source.remote.response.LoginResponse
 import com.gonexwind.ourstory.core.source.remote.response.PostResponse
@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,10 +42,14 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
         }
     }
 
-    suspend fun getAllStories(token: String): Flow<ApiState<StoriesResponse>> = flow {
+    suspend fun getAllStories(
+        token: String,
+        page: Int?,
+        size: Int?
+    ): Flow<ApiState<StoriesResponse>> = flow {
         try {
             emit(ApiState.Loading)
-            val response = apiService.getAllStories(token)
+            val response = apiService.getAllStories(token, page, size)
             if (response.error) {
                 emit(ApiState.Error(response.message))
             }

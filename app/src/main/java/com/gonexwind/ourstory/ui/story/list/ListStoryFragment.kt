@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagingData
 import com.gonexwind.ourstory.R
 import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.databinding.FragmentListStoryBinding
@@ -66,15 +67,16 @@ class ListStoryFragment : Fragment() {
     }
 
     private fun getAllStories(token: String) {
-        viewModel.getAllStories(token).observe(viewLifecycleOwner) {
+        viewModel.getAllStories(token, 1, 20).observe(viewLifecycleOwner) {
             when (it) {
                 is ApiState.Loading -> {
                     showLoading(true)
                 }
                 is ApiState.Success -> {
                     showLoading(false)
-                    val adapter = StoryAdapter(it.data.listStory)
+                    val adapter = StoryAdapter()
                     binding.storyRecyclerView.adapter = adapter
+                    adapter.submitData(lifecycle, PagingData.from(it.data.listStory))
                 }
                 is ApiState.Error -> {
                     showLoading(false)

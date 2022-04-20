@@ -3,14 +3,30 @@ package com.gonexwind.ourstory.ui.story.list
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.gonexwind.ourstory.R
 import com.gonexwind.ourstory.core.source.model.Story
 import com.gonexwind.ourstory.databinding.ItemStoryBinding
 
-class StoryAdapter(private val stories: List<Story>) :
-    RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
+class StoryAdapter :
+    PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
+    //    private val stories: List<Story>
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
+            override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: Story, newItem: Story): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
+    }
+
+
     inner class ViewHolder(private val binding: ItemStoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(story: Story) {
@@ -37,8 +53,12 @@ class StoryAdapter(private val stories: List<Story>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        stories[position].let { holder.bind(it) }
+//        stories[position].let { holder.bind(it) }
+        val data = getItem(position)
+        if (data != null) {
+            holder.bind(data)
+        }
     }
 
-    override fun getItemCount(): Int = stories.size
+//    override fun getItemCount(): Int = stories.size
 }
