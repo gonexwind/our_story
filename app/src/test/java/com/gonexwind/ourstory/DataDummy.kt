@@ -5,7 +5,7 @@ import com.gonexwind.ourstory.core.source.remote.response.StoriesResponse
 
 object DataDummy {
     const val token =
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLWZrTkJNYWxtUjBJaVhJSm8iLCJpYXQiOjE2NTAyNjAwOTZ9.kHsb2s6z1xdgEUCUK69Kvfwg-YpRpofOYIxliXL3x8Q"
+        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLWY3bTVWempHa0d3Njkzem0iLCJpYXQiOjE2NTA1MzY5NDN9.1uU6y3potXmPMeE_rN_DoH6ijhMWLrSDVAT5oPPokGE"
 
     fun generateDummyStory(): List<Story> {
         val stories = ArrayList<Story>()
