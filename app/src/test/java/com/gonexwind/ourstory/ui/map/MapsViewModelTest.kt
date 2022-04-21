@@ -57,4 +57,18 @@ class MapsViewModelTest {
                 )
             }
         }
+
+    @Test
+    fun `when Network Error Should Return Error`() =
+        runBlockingTest {
+            scope.launch {
+                val expectedMapStories = MutableLiveData<ApiState<StoriesResponse>>()
+                expectedMapStories.value = ApiState.Error("Error")
+                `when`(viewModel.getMapStories(token)).thenReturn(expectedMapStories)
+                val actualMapStories = viewModel.getMapStories(token).getOrAwaitValue()
+                Mockito.verify(appRepository).getMapStories(token)
+                Assert.assertNotNull(actualMapStories)
+                Assert.assertTrue(actualMapStories is ApiState.Error)
+            }
+        }
 }

@@ -19,6 +19,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
+import org.mockito.internal.matchers.Null
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -43,6 +44,18 @@ class StoryViewModelTest {
         scope.launch {
             val expectedStory = MutableLiveData<PagingData<Story>>()
             expectedStory.value = PagingData.from(dummyStory)
+            `when`(storyViewModel.getStoriesWithPage(token)).thenReturn(expectedStory)
+            val actualStory = storyViewModel.getStoriesWithPage(token).getOrAwaitValue()
+            Mockito.verify(appRepository).getStoriesWithPage(token)
+            Assert.assertNotNull(actualStory)
+        }
+    }
+
+    @Test
+    fun `when Network Error Should Return Error`() = runBlockingTest {
+        scope.launch {
+            val expectedStory = MutableLiveData<PagingData<Story>>()
+            expectedStory.value = null
             `when`(storyViewModel.getStoriesWithPage(token)).thenReturn(expectedStory)
             val actualStory = storyViewModel.getStoriesWithPage(token).getOrAwaitValue()
             Mockito.verify(appRepository).getStoriesWithPage(token)
