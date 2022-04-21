@@ -2,13 +2,12 @@ package com.gonexwind.ourstory.utils
 
 import com.gonexwind.ourstory.utils.Utils.formatDate
 import org.junit.Assert
-
 import org.junit.Test
+
 import java.time.format.DateTimeParseException
 import java.time.zone.ZoneRulesException
 
 class UtilsTest {
-
     @Test
     fun `given correct ISO 8601 format then should format correctly`() {
         val currentDate = "2022-02-02T10:10:10Z"
