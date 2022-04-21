@@ -9,6 +9,9 @@ import android.os.Environment
 import android.widget.Toast
 import java.io.*
 import java.text.SimpleDateFormat
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 object Utils  {
@@ -19,12 +22,18 @@ object Utils  {
         Locale.US
     ).format(System.currentTimeMillis())
 
+    fun formatDate(currentDateString: String, targetTimeZone: String): String {
+        val instant = Instant.parse(currentDateString)
+        val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy | HH:mm")
+            .withZone(ZoneId.of(targetTimeZone))
+        return formatter.format(instant)
+    }
+
     fun toast(context: Context, message: String) = Toast.makeText(
         context,
         message,
         Toast.LENGTH_SHORT
     ).show()
-
 
     fun createTempFile(context: Context): File {
         val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
