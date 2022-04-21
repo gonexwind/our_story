@@ -7,9 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.paging.PagingData
 import com.gonexwind.ourstory.R
-import com.gonexwind.ourstory.core.source.remote.network.ApiState
 import com.gonexwind.ourstory.databinding.FragmentListStoryBinding
 import com.gonexwind.ourstory.ui.story.StoryViewModel
 import com.gonexwind.ourstory.utils.UserPrefs

@@ -10,10 +10,10 @@ import coil.load
 import com.gonexwind.ourstory.R
 import com.gonexwind.ourstory.core.source.model.Story
 import com.gonexwind.ourstory.databinding.ItemStoryBinding
+import com.gonexwind.ourstory.utils.Utils
 
 class StoryAdapter :
     PagingDataAdapter<Story, StoryAdapter.ViewHolder>(DIFF_CALLBACK) {
-    //    private val stories: List<Story>
     companion object {
         private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Story>() {
             override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
@@ -33,6 +33,7 @@ class StoryAdapter :
             binding.apply {
                 nameTextView.text = story.name
                 descriptionTextView.text = story.description
+                createdAtTextView.text = Utils.formatDate(story.createdAt, "Asia/Jakarta")
                 storyImageView.load(story.photoUrl) {
                     placeholder(R.drawable.loading_animation)
                 }
@@ -53,12 +54,9 @@ class StoryAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        stories[position].let { holder.bind(it) }
         val data = getItem(position)
         if (data != null) {
             holder.bind(data)
         }
     }
-
-//    override fun getItemCount(): Int = stories.size
 }

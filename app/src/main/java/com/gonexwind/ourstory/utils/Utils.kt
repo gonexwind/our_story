@@ -17,7 +17,7 @@ import java.util.*
 object Utils  {
     private const val FILENAME_FORMAT = "dd-MMM-yyyy"
 
-    val timeStamp: String = SimpleDateFormat(
+    private val timeStamp: String = SimpleDateFormat(
         FILENAME_FORMAT,
         Locale.US
     ).format(System.currentTimeMillis())

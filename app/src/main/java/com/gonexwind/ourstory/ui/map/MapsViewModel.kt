@@ -11,7 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-
 @HiltViewModel
 class MapsViewModel @Inject constructor(private val appRepository: AppRepository) : ViewModel() {
     fun getMapStories(token: String): LiveData<ApiState<StoriesResponse>> {
