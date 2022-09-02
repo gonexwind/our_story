@@ -4,28 +4,13 @@
 
 **Our Story** is an app to share your stories
 
-# Application Install
-
-***You can Install and test latest Our Story app from below 👇***
-
 [![OurStory](https://img.shields.io/badge/OurStory✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/gonexwind/our_story/releases/download/v1.0.0/ourstory-release-1.0.apk)
-
-
-## Setup
-Clone the repository on your machine. Open the project on your IDE and connect it to firebase and harperDB and everything will be setup
 
 ## About
 It uses retrofit.
 - Fully functional.
 - Clean and Simple Material UI.
 - It's dark theme 🌗.
-
-## MAD Score
-
-![](media/mad_scorecard/summary.png)
-
-Full details of MAD Score:- [MAD Score](https://madscorecard.withgoogle.com/scorecards/2544709019/)
-
 
 ## 📸 Screenshots
 ||||
@@ -76,18 +61,3 @@ Full details of MAD Score:- [MAD Score](https://madscorecard.withgoogle.com/scor
     |       ├── detail          # Detail Story fragments
     |       └── list            # List Story fragments
     └── utils                   # Utility Classes / Kotlin extensions
-
-
-## Architecture
-This app uses [***MVVM (Model View View-Model)***](https://developer.android.com/jetpack/docs/guide#recommended-app-arch) architecture.
-
-![](https://developer.android.com/topic/libraries/architecture/images/final-architecture.png)
-
-## Contact
-If you need any help, you can connect with me.
-
-Visit:- [gonexwind git's](https://github.com/gonexwind)
-  
-
-
-
